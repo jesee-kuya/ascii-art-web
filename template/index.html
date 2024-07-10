@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ascii-Art Generator</title>
+    <style>
+      h1{margin: auto; padding: 15px; width: 50%;}
+      .head{margin-bottom: 5px; color: azure; background-color:rgb(49, 49, 126) ;}
+      .form-div{margin: auto; width: 50%; padding: 5px;}
+      pre {margin: auto;border-style: ridge; height: 275px; width: 90%; overflow: auto; padding: 70px; background-color: white; }
+      body{background-color: whitesmoke;}
+      .button{width: 100px; height: 40px; border-radius: 8px; background-color: rgb(93, 93, 163); color: whitesmoke; }
+      .input-box{border-color: black 10px;}
+      .radio{accent-color: black; }
+      .label-text{font-size: 21px;}
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="head">
+        <h1>Ascii-art Generator</h1>
+      </header>
+      <div class="form-div">
+        <form name="Ascii_form" action="/" method="POST">
+          <label for="input" class="label-text"> <i>Enter your input here</i></label><br>
+          <textarea name="input" class="input-box" id="input" cols="80" rows="15"></textarea><br>
+          
+          <br>
+          <label for="banner">Banner file</label><br>
+          <br>
+          <input type="radio" class="radio" name="banner" id="shadow" value="shadow" required>
+          <label for="shadow">shadow</label>
+            
+          <input type="radio" class="radio" name="banner" id="thinkertoy" value="thinkertoy">
+          <label for="thinkertoy">thinkertoy</label>
+            
+          <input type="radio" class="radio" name="banner" id="standard" value="standard">
+          <label for="standard">standard</label><br>
+          <br>
+          <input type="submit" class="button" value="Generate">
+        </form>  
+      </div> 
+    </main>
+    <br><br>
+    <pre>{{ .Result}}</pre>
+  </body>
+</html>
