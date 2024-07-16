@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ascii-web</title>
+</head>
+<body>
+    <header>
+        <h1>Ascii-web</h1>
+    </header>
+    <main>
+        <form action="/ascii-web" method="post">
+            <textarea name="input" id="input" placeholder="Enter your text here" cols="130" rows="10"></textarea>
+            <select name="bannerFiles" id="banner">
+                <option value="standard.txt">standard</option>
+                <option value="shadow.txt">shadow</option>
+                <option value="thinkertoy.txt">thinkertoy</option>
+            </select>
+            <input type="submit" value="Generate">
+        </form>
+        <div>
+            {{.Art}}
+        </div>
+    </main>
+    
+</body>
+</html>
