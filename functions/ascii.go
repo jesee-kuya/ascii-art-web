@@ -5,7 +5,6 @@ import (
 )
 
 func Ascii(input string, fileArr []string) string {
-	input = Reap(input)
 	arr := strings.Split(input, "\r\n")
 	var count int
 	var outputBuilder strings.Builder

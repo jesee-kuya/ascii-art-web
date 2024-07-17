@@ -8,7 +8,6 @@ import (
 )
 
 func FileReader(str string) ([]string, error) {
-	str = Reap(str)
 	var content []string
 	stdCheckSum := "e194f1033442617ab8a78e1ca63a2061f5cc07a3f05ac226ed32eb9dfd22a6bf"
 	shdCheckSum := "26b94d0b134b77e9fd23e0360bfd81740f80fb7f6541d1d8c5d85e73ee550f73"
