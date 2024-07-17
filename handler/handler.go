@@ -11,6 +11,10 @@ import (
 type Result struct {
 	Art string
 }
+
+type NewError struct {
+	Err string
+}
 type Data struct {
 	Text   string
 	Banner string
@@ -26,12 +30,29 @@ func HandleAscii(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == http.MethodPost {
 		if err = r.ParseForm(); err != nil {
-			fmt.Fprint(w, err)
+			w.WriteHeader(http.StatusInternalServerError)
+			http.Error(w, "500 | Internal Server Error", http.StatusNotFound)
+			return
 		}
 		data.Text = r.FormValue("input")
+		if err = web.NonAscii(data.Text); err != nil {
+			w.WriteHeader(http.StatusBadRequest)
+			http.Error(w, "400 | Bad Request - Non ascii character detected", http.StatusBadRequest)
+			return
+		}
 		data.Banner = r.FormValue("bannerFiles")
-		fileArr, _ := web.FileReader(data.Banner)
+		fileArr, err := web.FileReader(data.Banner)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			http.Error(w, "404 |  Resource Not Found", http.StatusNotFound)
+			return
+		}
 		result.Art = web.Ascii(data.Text, fileArr)
-		t.Execute(w, result)
 	}
+	if r.URL.Path != "/" && r.URL.Path != "/ascii-web" {
+		w.WriteHeader(http.StatusNotFound)
+		http.Error(w, "404 | Page Not Found", http.StatusNotFound)
+		return
+	}
+	t.ExecuteTemplate(w, "index.html", result)
 }
