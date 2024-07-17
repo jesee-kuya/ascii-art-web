@@ -1,10 +1,12 @@
 package web
 
-import "strings"
+import (
+	"strings"
+)
 
 func Ascii(input string, fileArr []string) string {
 	input = Reap(input)
-	arr := strings.Split(input, "\r")
+	arr := strings.Split(input, "\r\n")
 	var count int
 	var outputBuilder strings.Builder
 
@@ -15,12 +17,12 @@ func Ascii(input string, fileArr []string) string {
 					start := (v - 32) * 9
 					outputBuilder.WriteString(fileArr[int(start)+i])
 				}
-				outputBuilder.WriteString("\r")
+				outputBuilder.WriteString("\n")
 			}
 		} else {
 			count++
 			if count < len(arr) {
-				outputBuilder.WriteString("\r")
+				outputBuilder.WriteString("\n")
 			}
 		}
 	}
