@@ -1,0 +1,40 @@
+h1 {
+    color: green;
+    text-align: center;
+    font-family: cursive, 'Times New Roman', Georgia;
+}
+
+header {
+    background-color: whitesmoke;
+}
+
+main {
+    background-color: white;
+}
+
+form {
+    color: whitesmoke;
+}
+
+input, select {
+    color: green;
+}
+
+body {
+    background-color: white;
+}
+
+
+div {
+    position: bottom;
+    border-top-style: outset;
+    border-width: 2px;
+    border-color: limegreen;
+}
+textarea {
+    height:  auto;
+    width:  auto;
+    display: grid;
+}
+
+

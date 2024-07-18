@@ -54,5 +54,6 @@ func HandleAscii(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "404 | Page Not Found", http.StatusNotFound)
 		return
 	}
+	w.WriteHeader(http.StatusOK)
 	t.ExecuteTemplate(w, "index.html", result)
 }
