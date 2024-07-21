@@ -1,42 +1,39 @@
 package webart
 
 import (
-	"errors"
+	"crypto/sha256"
+	"fmt"
 	"os"
 	"strings"
 )
 
-func Bannerfile(banner string) ([]string, error) {
-	banner = banner + ".txt"
-	if banner == "thinkertoy.txt" {
-		content, err := reader(banner, "\r\n")
-		if err != nil {
-			return nil, err
-		} else {
-			return content, nil
-		}
-	} else {
-		content, err := reader(banner, "\n")
-		if err != nil {
-			return nil, err
-		} else {
-			return content, nil
-		}
-	}
+// Filereader takes filename a string and returns the content as a slice []string
+// if an error is encounterd. It is also logged
+func FileReader(filename string) ([]string, error) {
+	var content []string
+	stdCheckSum := "e194f1033442617ab8a78e1ca63a2061f5cc07a3f05ac226ed32eb9dfd22a6bf"
+	shdCheckSum := "26b94d0b134b77e9fd23e0360bfd81740f80fb7f6541d1d8c5d85e73ee550f73"
+	thkCheckSum := "64285e4960d199f4819323c4dc6319ba34f1f0dd9da14d07111345f5d76c3fa3"
 
-}
-
-// Reader reads the banner file and returns a slice of string
-func reader(filename string, sepp string) ([]string, error) {
-	file, err := os.ReadFile(filename)
+	file, err := os.ReadFile("./resources/" + filename + ".txt")
 	if err != nil {
-		return nil, errors.New("error reading banner file")
+		return nil, err
 	}
 
-	// check if the bannerfile has all the values
-	content := strings.Split(string(file), sepp)
-	if len(content) != 856 {
-		return nil, errors.New("the banner file content is not correct")
+	h := sha256.New()
+	h.Write(file)
+	sum := h.Sum(nil)
+	checkSum := fmt.Sprintf("%x", sum)
+
+	if checkSum != stdCheckSum && checkSum != shdCheckSum && checkSum != thkCheckSum {
+		return nil, fmt.Errorf(" Invalid file or modified file")
 	}
+
+	if checkSum == thkCheckSum {
+		content = strings.Split(string(file), "\r\n")
+	} else {
+		content = strings.Split(string(file), "\n")
+	}
+
 	return content, nil
 }

@@ -1,17 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ .Title}}</title>
-    <style>
-        body, html{background-color: rgb(232, 240, 240); height: 100%; margin: 0; display: grid; place-items: center;}
-        h1{font-family: 'Courier New', Courier, monospace; text-align: center; font-size: 65px;}
-    </style>
-  </head>
-  <body>
-	<h1>{{ .Message}}</h1>
-  </body>
-</html>
+    <link rel="stylesheet" href="static/errors.css">
+</head>
+<body>
+    <header>
+      <nav>
+          <ul>
+              <li><a href="/">Ascii-Web</a></li>
+              <li><a href="about">About</a></li>
+          </ul>
+      </nav>
+  </header>
 
+    <main class="error">
+        <h1>Oops! Something went wrong</h1>
+        <h3>The server returned a {{.Status}}</h3>
+        <p><i>{{.Message}}</i></p>
+        <p>Please try again. If the error persists, contact us.
+            <a href="https://github.com/konditi1/ascii-art-web/issues">Report an issue</a>
+            Please provide the following information:
+            <ul>
+                <li>Status code: {{.Status}}</li>
+                <li>Message: {{.Message}}</li>
+            </ul>
+        </p>
+        <a href="/">Back to Home</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Ascii-Web. All rights reserved. <a href="https://github.com/konditi1/ascii-art-web">@konditi1</a>
+            <a href="https://github.com/jesee-kuya/ascii-art-web">@jesee-kuya</a></p>
+            <a href="https://github.com/j1mmy7z7">@james_muchiri</a></p>
+    </footer>
+</body>
+</html>

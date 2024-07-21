@@ -5,6 +5,8 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
+
+	webart "webart/handler"
 )
 
 var codes = []struct {
@@ -77,7 +79,7 @@ func TestStatusCode(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			wr := httptest.NewRecorder()
 			req := httptest.NewRequest(tc.method, "/", nil)
-			Asciiweb(wr, req)
+			webart.Asciiweb(wr, req)
 			if wr.Code != http.StatusMethodNotAllowed {
 				t.Errorf("got HTTP status code %d , expected 405", wr.Code)
 			}
@@ -90,9 +92,9 @@ func TestWeb_Ascii_Art(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			input := strings.NewReader(tc.form_data)
 			wr := httptest.NewRecorder()
-			req := httptest.NewRequest("POST", "/", input)
+			req := httptest.NewRequest("POST", "/ascii-art", input)
 			req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-			Asciiweb(wr, req)
+			webart.Asciiweb(wr, req)
 			if wr.Code != http.StatusOK {
 				t.Errorf("got HTTP status code %d , expected 200", wr.Code)
 				return

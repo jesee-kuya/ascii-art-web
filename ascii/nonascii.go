@@ -5,7 +5,8 @@ import (
 	"strings"
 )
 
-// CheckAscii checks if the input words contain any non-ASCII characters
+// CheckAscii takes word a string and returns
+// true if the characters are printable
 func CheckAscii(word string) bool {
 	word = strings.ReplaceAll(word, "\r\n", " ")
 	wordsArr := strings.Split(word, "")

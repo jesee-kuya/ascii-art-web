@@ -4,6 +4,8 @@ import (
 	"strings"
 )
 
+// Ascii takes fileArr a slice of string and words a string
+// Ascii returns a string. The string is words in Ascii-art
 func Ascii(fileArr []string, words string) string {
 	var result string
 
